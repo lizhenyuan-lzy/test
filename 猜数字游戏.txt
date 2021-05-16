@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+
+void menu()
+{
+    printf("**********************************\n");
+    printf("******   1:play    0:exit   ******\n");
+    printf("**********************************\n");
+}
+void game()
+{
+    int ret = 0;
+    int guess = 0;
+    ret = rand()%100+1;
+                       //rand()函数-随机生成一个整形数（0——32767）
+                       //在调用rand（ ）函数之前,要用srand（ ）函数
+                       // 去设置随机数的生成器
+                       //需要引用头文件#include<stdlib.h> 
+                       //得到的随机数模上100之后数字范围变成0-99
+                       //+1后 范围变成1-100
+    while (1)
+    {
+        printf("请猜数字：");
+        scanf("%d", &guess);
+        if (guess > ret)
+        {
+            printf("猜大了\n");
+        }
+        else if (guess < ret)
+        {
+            printf("猜小了\n");
+        }
+        else
+        {
+            printf("恭喜你，猜对了\n");
+            break;
+        }  
+    }
+}
+int main()
+{
+    int input = 0;
+    srand((unsigned int)time(NULL));
+                //srand(随机给一个整形)函数——设置一个随机起点
+                //引用头文件——stdio.h
+                //时间戳   把时间强制转换类型【time（）函数的参数是个长整型long，
+                //需要强制转换后再给srand()函数使用】time（）函数引用头文件-time.h
+    do
+    {
+        menu();
+        printf("请选择:");
+        scanf("%d", &input);
+        switch (input)
+        {
+        case 1:
+            game();
+            break;
+        case 0:
+            printf("退出游戏\n");
+            break;
+        default:
+            printf("选择错误\n");
+            break;
+        }
+    } while (input);
+        return 0;
+}
